@@ -26,6 +26,7 @@ public class Factura {
     public LocalDateTime getFecha(){ return fecha; }
     /**
      * Iterator
+     * @return 
      */
     public List<ItemFactura> getItems(){ return items; }
     public EstadoFactura getEstado(){ return estado; }
@@ -36,6 +37,13 @@ public class Factura {
         this.fecha=LocalDateTime.now();
         this.items = new ArrayList<>();
         this.estado = new EstadoPendiente();
+    }
+    
+    public void restaurarDesdeMemento(FacturaMemento memento) {
+    this.estado = memento.getEstado();
+    this.items.clear();
+    this.items.addAll(memento.getItems());
+    this.fecha = memento.getFecha();
     }
     
     public void setEstado(EstadoFactura estado){
@@ -53,6 +61,10 @@ public class Factura {
     }
     public double getTotal(){
         return getSubtotal() + getImpuesto();
+    }
+    
+    public FacturaMemento crearMemento() {
+    return new FacturaMemento(numero, cliente, fecha, items, estado);
     }
 
     @Override
