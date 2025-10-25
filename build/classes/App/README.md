@@ -58,3 +58,9 @@ El diseño sigue principios de **buenas prácticas**, **encapsulamiento**, **sep
 └── README.md
 
 ## 🧩 Patrones de diseño aplicados
+-------------------------------------Patrón state
+Se cambia a EstadoFactura y pasa a ser una interfaz, teniendo métodos void de los estados.
+Se implementa en la clase Factura, donde se inicializa como pendiente en el constructor y se agrega su setEstado().
+Luego se crean las respectivas clases de cada estado utilizando implements EstadoFactura, donde se programan sus métodos.
+En la clase ServicioFacturación se cambia la forma de actualizar los estados.
+En la clase main Se cambia en menuListado el case 2 para que funcione con el patrón state.

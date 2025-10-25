@@ -69,7 +69,7 @@ public class ServicioFacturacion {
     }
     
     public List<Factura> filtrarPorEstado(EstadoFactura estado){
-        return repo
+        return repo.filtrarPorEstado(estado);
     }
     
     public List<Factura> filtrarPorFecha(LocalDate d, LocalDate h){

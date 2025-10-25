@@ -412,6 +412,7 @@ public class App {
                         case "PAGADA" -> estado = new EstadoPagada();
                         case "ANULADA" -> estado = new EstadoAnulada();
                         case "PENDIENTE" -> estado = new EstadoPendiente();
+                        default -> throw new IllegalArgumentException();
                     }
                     
                     var lista = fact.filtrarPorEstado(estado);
