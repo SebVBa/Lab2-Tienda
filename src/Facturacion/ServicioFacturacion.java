@@ -42,7 +42,7 @@ public class ServicioFacturacion {
 
     public void emitirFactura(int numero, List<CanalNotificacion> canales){
         repo.buscar(numero).ifPresent(f->{
-            f.setEstado(EstadoFactura.EMITIDA);
+            f.setEstado(new EstadoEmitida());
             repo.guardar(f);
             // envío automático multi-canal
             for (CanalNotificacion c : canales) {
@@ -53,13 +53,13 @@ public class ServicioFacturacion {
 
     public void pagarFactura(int numero){
         repo.buscar(numero).ifPresent(f->{ 
-            f.setEstado(EstadoFactura.PAGADA);
+            f.setEstado(new EstadoPagada());
             repo.guardar(f); 
         });
     }
     public void anularFactura(int numero){
         repo.buscar(numero).ifPresent(f->{ 
-            f.setEstado(EstadoFactura.ANULADA);
+            f.setEstado(new EstadoAnulada());
             repo.guardar(f); 
         });
     }
@@ -68,8 +68,8 @@ public class ServicioFacturacion {
         return repo.obtenerTodo();
     }
     
-    public List<Factura> filtrarPorEstado(EstadoFactura e){
-        return repo.filtrarPorEstado(e);
+    public List<Factura> filtrarPorEstado(EstadoFactura estado){
+        return repo
     }
     
     public List<Factura> filtrarPorFecha(LocalDate d, LocalDate h){

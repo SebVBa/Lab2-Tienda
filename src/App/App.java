@@ -16,6 +16,10 @@ import Catalogo.Producto;
 import Catalogo.RepositorioCategorias;
 import Catalogo.RepositorioProductos;
 import Catalogo.ServicioCatalogo;
+import Facturacion.EstadoAnulada;
+import Facturacion.EstadoEmitida;
+import Facturacion.EstadoPagada;
+import Facturacion.EstadoPendiente;
 import java.io.UnsupportedEncodingException;
 
 import java.time.LocalDate;
@@ -400,9 +404,17 @@ public class App {
             case "1" -> fact.listar().forEach(System.out::println);
             case "2" -> {
                 try {
+                    EstadoFactura estado;
+                    String estadoStr = sc.nextLine().trim().toUpperCase();
                     System.out.print("Estado (EMITIDA/PAGADA/ANULADA/PENDIENTE): ");
-                    var e = EstadoFactura.valueOf(sc.nextLine().toUpperCase());
-                    var lista = fact.filtrarPorEstado(e);
+                    switch (estadoStr) {
+                        case "EMITIDA" -> estado = new EstadoEmitida();
+                        case "PAGADA" -> estado = new EstadoPagada();
+                        case "ANULADA" -> estado = new EstadoAnulada();
+                        case "PENDIENTE" -> estado = new EstadoPendiente();
+                    }
+                    
+                    var lista = fact.filtrarPorEstado(estado);
                     if (lista.isEmpty()) System.out.println(ERR + "Sin resultados.");
                     else lista.forEach(System.out::println);
                 } catch (IllegalArgumentException ex){

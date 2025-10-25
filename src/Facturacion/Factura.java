@@ -29,15 +29,17 @@ public class Factura {
      */
     public List<ItemFactura> getItems(){ return items; }
     public EstadoFactura getEstado(){ return estado; }
-    
-    public void setEstado(EstadoFactura e){ this.estado=e; }
 
     public Factura(int numero, Cliente cliente) {
         this.numero=numero; 
         this.cliente=cliente; 
         this.fecha=LocalDateTime.now();
         this.items = new ArrayList<>();
-        this.estado = EstadoFactura.PENDIENTE;
+        this.estado = new EstadoPendiente();
+    }
+    
+    public void setEstado(EstadoFactura estado){
+        this.estado = estado;
     }
     
     public void addItem(ItemFactura item){ items.add(item); }

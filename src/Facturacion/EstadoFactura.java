@@ -8,6 +8,9 @@ package Facturacion;
  *
  * @author jprod
  */
-public enum EstadoFactura {
-    EMITIDA, PAGADA, ANULADA, PENDIENTE
+public interface EstadoFactura {
+    void emitida(Factura factura);
+    void pagada(Factura factura);
+    void anulada(Factura factura);
+    void Pendiente(Factura factura);
 }
