@@ -58,3 +58,9 @@ El diseño sigue principios de **buenas prácticas**, **encapsulamiento**, **sep
 └── README.md
 
 ## 🧩 Patrones de diseño aplicados
+|Strategy:
+Propósito: Se Desacopla la lógica de pago del cliente y del método.
+Antes: el tipo de pago se manejaba con TipoMetodoPago y condicionales.
+Ahora: En el paquete de clientes se crean las clases de distintos metodos de pago, cada tipo tiene su estrategia propia, y MetodoPago delega la acción a ella.
+
+|
